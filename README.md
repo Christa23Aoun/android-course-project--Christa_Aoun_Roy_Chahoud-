@@ -19,22 +19,6 @@ The project is designed to be extendable in the future to include AI-based coffe
 - Code structure allows future integration with networking and background tasks.
 
 The project follows the MVVM (Model–View–ViewModel) pattern
-com.example.hugyourmug
-│
-├── data/ # Entities, DAO, Repository, and Database classes
-│ ├── AppDatabase.kt
-│ ├── Coffee.kt
-│ ├── CoffeeRepository.kt
-│ └── DrinkDao.kt
-│
-├── viewmodel/ # ViewModel containing business logic
-│ └── CoffeeViewModel.kt
-│
-├── ui/ # RecyclerView Adapter and layouts
-│ └── CoffeeAdapter.kt
-│
-├── res/layout/ # activity_main.xml, dialog_add_coffee.xml, item_coffee.xml
-└── MainActivity.kt # Main screen with toolbar, list, and add button
 
 
 Data Flow:  
