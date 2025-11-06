@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_add_samples"
+        android:title="@string/add_sample_coffees"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_clear_all"
+        android:title="@string/clear_all_coffees"
+        app:showAsAction="never" />
+
+</menu>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HugYourMug</string>
+    <string name="add_coffee">Add Coffee</string>
+    <string name="add_sample_coffees">Add Sample Coffees</string>
+    <string name="clear_all_coffees">Clear All Coffees</string>
+
+</resources>
