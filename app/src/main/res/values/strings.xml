@@ -1,7 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">HugYourMug</string>
-    <string name="add_coffee">Add Coffee</string>
-    <string name="add_sample_coffees">Add Sample Coffees</string>
-    <string name="clear_all_coffees">Clear All Coffees</string>
+
+    <string name="app_name">Hug Your Mug</string>
+
+    <string name="home_welcome">Welcome to Hug Your Mug</string>
+    <string name="home_tagline">Your cozy coffee companion</string>
+
+    <string name="add_sample_coffees">Add sample coffees</string>
+    <string name="clear_all_coffees">Clear all coffees</string>
+
+    <string name="about_title">What makes our coffee special?</string>
+
+    <string name="about_description">Great coffee starts with great beans, but the magic happens in the warmth you feel with every sip. At Hug Your Mug, we roast with love, brew with joy, and serve cups that hug you back.</string>
+    <string name="start_journey">Start Your Coffee Journey</string>
 
 </resources>

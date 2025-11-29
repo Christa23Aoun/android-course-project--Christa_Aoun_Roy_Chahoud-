@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <!-- Warm coffee palette -->
+    <color name="coffee_brown">#6F4E37</color>
+    <color name="coffee_light_brown">#A67B5B</color>
+    <color name="coffee_cream">#FFF4E6</color>
+    <color name="coffee_milk">#F9E4C8</color>
+    <color name="coffee_dark">#4B2E19</color>
+
+    <!-- General UI -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Bottom navigation tint -->
+    <color name="bottom_nav_selected">#6F4E37</color>
+    <color name="bottom_nav_unselected">#9E9E9E</color>
+
 </resources>

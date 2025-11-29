@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- FULL WIDTH IMAGE -->
+
+    <!-- TEXT SECTION -->
+
+    <ImageView
+        android:id="@+id/imgWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="271dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/hug_longer" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/txtWelcomeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to Hug Your Mug ☕"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/coffee_brown"
+            android:paddingBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/txtWelcomeDesc"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:text="Your cozy coffee companion"
+            android:textColor="@color/coffee_dark"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- BUTTON -->
+    <Button
+        android:id="@+id/btnStartJourney"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Your Journey"
+        android:layout_margin="24dp"
+        android:backgroundTint="@color/coffee_brown"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

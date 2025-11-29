@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:title="Home"
+        android:icon="@android:drawable/ic_menu_view" />
+
+    <item
+        android:id="@+id/nav_menu"
+        android:title="Menu"
+        android:icon="@android:drawable/ic_menu_sort_by_size" />
+
+    <item
+        android:id="@+id/nav_rewards"
+        android:title="Rewards"
+        android:icon="@android:drawable/star_big_on" />
+
+    <item
+        android:id="@+id/nav_map"
+        android:title="Map"
+        android:icon="@android:drawable/ic_menu_mylocation" />
+
+</menu>

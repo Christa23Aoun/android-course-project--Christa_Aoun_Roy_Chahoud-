@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/coffee_cream"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/txtWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to Hug Your Mug ☕"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/coffee_dark"
+            android:paddingBottom="6dp" />
+
+        <!-- Tagline -->
+        <TextView
+            android:id="@+id/txtTagline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your cozy coffee companion"
+            android:textSize="16sp"
+            android:textColor="@color/coffee_brown"
+            android:paddingBottom="22dp" />
+
+        <!-- Discover Image -->
+        <ImageView
+            android:id="@+id/imgDiscover"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:src="@drawable/discover_coffee"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="20dp" />
+
+        <!-- About Title -->
+        <TextView
+            android:id="@+id/txtAboutTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/coffee_dark"
+            android:paddingBottom="10dp" />
+
+        <!-- About Description -->
+        <TextView
+            android:id="@+id/txtAboutDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_description"
+            android:textSize="16sp"
+            android:textColor="@color/coffee_brown"
+            android:lineSpacingExtra="6dp"
+            android:paddingBottom="30dp" />
+
+    </LinearLayout>
+
+</ScrollView>

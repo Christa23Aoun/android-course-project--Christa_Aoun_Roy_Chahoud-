@@ -3,70 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
-
-    <com.google.android.material.appbar.AppBarLayout
+    <!-- Fragment container that MainActivity will use -->
+    <FrameLayout
+        android:id="@+id/fragment_container_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:title="Hug Your Mug ☕"
-            android:titleTextColor="@color/white"
-            app:titleCentered="true"
-            app:menu="@menu/main_menu"
-            app:logo="@drawable/ic_coffee" />
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <!-- Content -->
-    <LinearLayout
+    <!-- Bottom Navigation (works even if fragments are not ready yet) -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_marginTop="?attr/actionBarSize">
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        app:menu="@menu/bottom_nav_menu" />
 
-        <TextView
-            android:id="@+id/txtWelcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome to Hug Your Mug ☕"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="4dp" />
-
-        <TextView
-            android:id="@+id/txtHint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Swipe an item to delete it."
-            android:textSize="14sp"
-            android:textColor="#777777"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="8dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCoffees"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:clipToPadding="false"/>
-    </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddCoffee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/add_coffee"
-        app:srcCompat="@android:drawable/ic_input_add"
-        app:tint="@android:color/white"
-        android:layout_gravity="bottom|end"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

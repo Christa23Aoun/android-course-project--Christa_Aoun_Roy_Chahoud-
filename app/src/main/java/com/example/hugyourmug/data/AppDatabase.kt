@@ -1,13 +1,19 @@
 package com.example.hugyourmug.data
 
-import androidx.room.Database
-import androidx.room.RoomDatabase
-import androidx.room.Room
 import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 
-@Database(entities = [Coffee::class], version = 1, exportSchema = false)
+@Database(
+    entities = [Coffee::class, User::class],
+    version = 3,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun coffeeDao(): CoffeeDao
+    abstract fun userDao(): UserDao
 
     companion object {
         @Volatile
@@ -19,7 +25,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "hug_your_mug_db"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }

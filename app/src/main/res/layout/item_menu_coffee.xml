@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="#111111"
+    android:layout_margin="8dp">
+
+    <ImageView
+        android:id="@+id/imgCoffee"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true" />
+
+    <TextView
+        android:id="@+id/txtCoffeeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coffee Name"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="12dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/txtCoffeePrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3$"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#F5D0A9" />
+
+        <TextView
+            android:id="@+id/txtCoffeeOldPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3.5$"
+            android:textSize="14sp"
+            android:layout_marginStart="8dp"
+            android:textColor="#888888" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnAddToCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add to Cart"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#C68A4A"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>
