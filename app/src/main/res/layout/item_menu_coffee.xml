@@ -1,61 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:background="#111111"
-    android:layout_margin="8dp">
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:layout_marginBottom="12dp"
+    android:background="#1F1F1F">
 
     <ImageView
         android:id="@+id/imgCoffee"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true" />
-
-    <TextView
-        android:id="@+id/txtCoffeeName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Coffee Name"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="12dp" />
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp">
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp">
 
         <TextView
-            android:id="@+id/txtCoffeePrice"
+            android:id="@+id/txtCoffeeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3$"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#F5D0A9" />
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/txtCoffeeOldPrice"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3.5$"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"
-            android:textColor="#888888" />
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/txtCoffeePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F5D0A9"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtCoffeeOldPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#888888"
+                android:textSize="14sp"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/btnAddToCart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Add to cart"
+                android:backgroundTint="#7A4B2E"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnAddToFavorite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="♥ Favorite"
+                android:backgroundTint="#3A3A3A"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnAddToCart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add to Cart"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="#C68A4A"
-        android:textColor="@android:color/white" />
 
 </LinearLayout>

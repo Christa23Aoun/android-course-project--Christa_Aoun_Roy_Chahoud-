@@ -1,10 +1,13 @@
 package com.example.hugyourmug
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.fragment.app.Fragment
 import com.example.hugyourmug.ui.home.HomeFragment
 import com.example.hugyourmug.ui.menu.MenuFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.hugyourmug.ui.cart.CartFragment
+import com.example.hugyourmug.ui.favorites.FavoritesFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,21 +15,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Load Home screen by default
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+
         loadFragment(HomeFragment())
 
-        // Setup bottom navigation
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
 
-                R.id.nav_home -> {
+                R.id.navigation_home -> {
                     loadFragment(HomeFragment())
                     true
                 }
 
-                R.id.nav_menu -> {
+                R.id.navigation_menu -> {
                     loadFragment(MenuFragment())
+                    true
+                }
+
+                R.id.navigation_cart -> {
+                    loadFragment(CartFragment())
+                    true
+                }
+
+                R.id.navigation_favorites -> {
+                    loadFragment(FavoritesFragment())
                     true
                 }
 
@@ -35,9 +47,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadFragment(fragment: androidx.fragment.app.Fragment) {
+    private fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container_view, fragment)
+            .replace(R.id.nav_host_fragment, fragment)
             .commit()
     }
 }

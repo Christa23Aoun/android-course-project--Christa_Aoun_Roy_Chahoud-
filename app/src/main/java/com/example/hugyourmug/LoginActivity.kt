@@ -7,10 +7,10 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.hugyourmug.data.AppDatabase
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : AppCompatActivity() {
 
@@ -18,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val edtIdentifier = findViewById<EditText>(R.id.edtEmailLogin)
+        val edtEmail = findViewById<EditText>(R.id.edtEmailLogin)
         val edtPassword = findViewById<EditText>(R.id.edtPasswordLogin)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val btnGoToRegister = findViewById<Button>(R.id.btnGoToRegister)
@@ -28,13 +28,13 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener {
-            val identifier = edtIdentifier.text.toString().trim()
+            val email = edtEmail.text.toString().trim()
             val password = edtPassword.text.toString().trim()
 
-            if (identifier.isEmpty() || password.isEmpty()) {
+            if (email.isEmpty() || password.isEmpty()) {
                 Snackbar.make(
                     findViewById(android.R.id.content),
-                    "Please enter email/username and password",
+                    "Please enter email and password",
                     Snackbar.LENGTH_LONG
                 )
                     .setBackgroundTint(getColor(R.color.coffee_brown))
@@ -48,17 +48,13 @@ class LoginActivity : AppCompatActivity() {
                 val userDao = db.userDao()
 
                 val user = withContext(Dispatchers.IO) {
-                    if (identifier.contains("@")) {
-                        userDao.getUserByEmail(identifier)
-                    } else {
-                        userDao.getUserByUsername(identifier)
-                    }
+                    userDao.getUserByEmail(email)
                 }
 
                 if (user == null) {
                     Snackbar.make(
                         findViewById(android.R.id.content),
-                        "No account found for this email or username",
+                        "No account found for this email",
                         Snackbar.LENGTH_LONG
                     )
                         .setBackgroundTint(getColor(R.color.coffee_brown))
@@ -70,6 +66,12 @@ class LoginActivity : AppCompatActivity() {
                 val enteredHash = hashPassword(password)
 
                 if (enteredHash == user.passwordHash) {
+                    // ✅ Save logged in user ID for cart & favorites
+                    val sharedPref = getSharedPreferences("userData", MODE_PRIVATE)
+                    sharedPref.edit()
+                        .putInt("loggedInUserId", user.id)
+                        .apply()
+
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()

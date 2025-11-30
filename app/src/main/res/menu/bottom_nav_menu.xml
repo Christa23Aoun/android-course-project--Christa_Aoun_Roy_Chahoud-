@@ -1,23 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_home"
-        android:title="Home"
-        android:icon="@android:drawable/ic_menu_view" />
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
 
     <item
-        android:id="@+id/nav_menu"
-        android:title="Menu"
-        android:icon="@android:drawable/ic_menu_sort_by_size" />
+        android:id="@+id/navigation_menu"
+        android:icon="@drawable/ic_menu"
+        android:title="Menu" />
 
     <item
-        android:id="@+id/nav_rewards"
-        android:title="Rewards"
-        android:icon="@android:drawable/star_big_on" />
+        android:id="@+id/navigation_cart"
+        android:icon="@drawable/ic_cart"
+        android:title="Cart" />
 
     <item
-        android:id="@+id/nav_map"
-        android:title="Map"
-        android:icon="@android:drawable/ic_menu_mylocation" />
+        android:id="@+id/navigation_favorites"
+        android:icon="@drawable/ic_favorite"
+        android:title="Favorites" />
 
 </menu>

@@ -12,7 +12,8 @@ import com.example.hugyourmug.R
 
 class CoffeeMenuAdapter(
     private val items: List<CoffeeMenuItem>,
-    private val onAddToCartClick: (CoffeeMenuItem) -> Unit
+    private val onAddToCartClick: (CoffeeMenuItem) -> Unit,
+    private val onAddToFavoriteClick: (CoffeeMenuItem) -> Unit
 ) : RecyclerView.Adapter<CoffeeMenuAdapter.CoffeeViewHolder>() {
 
     inner class CoffeeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -21,6 +22,7 @@ class CoffeeMenuAdapter(
         val txtPrice: TextView = itemView.findViewById(R.id.txtCoffeePrice)
         val txtOldPrice: TextView = itemView.findViewById(R.id.txtCoffeeOldPrice)
         val btnAddToCart: Button = itemView.findViewById(R.id.btnAddToCart)
+        val btnAddToFavorite: Button = itemView.findViewById(R.id.btnAddToFavorite)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoffeeViewHolder {
@@ -31,13 +33,22 @@ class CoffeeMenuAdapter(
 
     override fun onBindViewHolder(holder: CoffeeViewHolder, position: Int) {
         val item = items[position]
+
         holder.imgCoffee.setImageResource(item.imageResId)
         holder.txtName.text = item.name
         holder.txtPrice.text = "${item.price}$"
         holder.txtOldPrice.text = "${item.oldPrice}$"
+
         holder.txtOldPrice.paintFlags =
             holder.txtOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-        holder.btnAddToCart.setOnClickListener { onAddToCartClick(item) }
+
+        holder.btnAddToCart.setOnClickListener {
+            onAddToCartClick(item)
+        }
+
+        holder.btnAddToFavorite.setOnClickListener {
+            onAddToFavoriteClick(item)
+        }
     }
 
     override fun getItemCount(): Int = items.size
