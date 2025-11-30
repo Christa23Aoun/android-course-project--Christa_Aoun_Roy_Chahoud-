@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- MAP FRAGMENT -->
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- BOTTOM INFO CARD -->
+    <LinearLayout
+        android:id="@+id/infoCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="12dp"
+        android:background="@drawable/rounded_card"
+        android:elevation="10dp"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+        <TextView
+            android:id="@+id/txtCafeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hug Your Mug Café"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/txtCafeHours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open today • 8:00 AM – 10:00 PM"
+            android:textSize="14sp"
+            android:textColor="#6A4E42"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/txtCafeAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📍 Beirut, Lebanon"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:id="@+id/btnDirections"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Directions"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/coffee_brown"
+            android:textColor="@android:color/white"
+            android:padding="12dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
