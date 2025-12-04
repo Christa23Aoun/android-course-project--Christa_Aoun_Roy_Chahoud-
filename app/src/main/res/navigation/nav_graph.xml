@@ -51,4 +51,14 @@
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 
+
+
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="com.example.hugyourmug.ui.orders.OrderDetailsFragment"
+        android:label="Order Details">
+        <argument
+            android:name="orderId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("androidx.navigation.safeargs.kotlin") version "2.7.7" // Specify the version
     id("com.google.devtools.ksp")
 }
 

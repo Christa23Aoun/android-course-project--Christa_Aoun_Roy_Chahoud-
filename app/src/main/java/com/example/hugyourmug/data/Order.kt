@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "orders")
 data class Order(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val orderId: Int = 0,  // Rename this field to 'orderId'
     val userId: Int,
     val fullName: String,
     val address: String,

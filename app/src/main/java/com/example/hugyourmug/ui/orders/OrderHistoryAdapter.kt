@@ -38,7 +38,7 @@ class OrderHistoryAdapter(
             "Delivery • Bring change: ${if (order.bringChange) "Yes" else "No"}"
         else "Pickup"
 
-        holder.txtItems.text = "${orderItemsCount(order.id)} items"
+        holder.txtItems.text = "${orderItemsCount(order.orderId)} items"
         holder.txtTotal.text = "$${String.format("%.2f", order.total)}"
 
         holder.itemView.setOnClickListener { onClick(order) }
