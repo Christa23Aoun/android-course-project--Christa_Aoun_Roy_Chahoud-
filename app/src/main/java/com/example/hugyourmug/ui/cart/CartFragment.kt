@@ -14,6 +14,8 @@ import com.example.hugyourmug.data.AppDatabase
 import com.example.hugyourmug.data.CartItem
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
+import androidx.navigation.fragment.findNavController
+
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.widget.Button
@@ -53,8 +55,9 @@ class CartFragment : Fragment() {
         recyclerCart.adapter = adapter
 
         btnCheckout.setOnClickListener {
-            Snackbar.make(requireView(), "Checkout is not implemented yet", Snackbar.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_cartFragment_to_checkoutFragment)
         }
+
 
         loadCart()
     }

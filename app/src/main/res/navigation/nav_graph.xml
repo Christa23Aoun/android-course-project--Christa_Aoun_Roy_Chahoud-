@@ -1,12 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/menuFragment">
+    app:startDestination="@id/navigation_home">
 
     <fragment
-        android:id="@+id/menuFragment"
+        android:id="@+id/navigation_home"
+        android:name="com.example.hugyourmug.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_menu"
         android:name="com.example.hugyourmug.ui.menu.MenuFragment"
-        android:label="Menu" />
+        android:label="Menu"
+        tools:layout="@layout/fragment_menu" />
+
+    <fragment
+        android:id="@+id/navigation_cart"
+        android:name="com.example.hugyourmug.ui.cart.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart">
+
+        <action
+            android:id="@+id/action_cartFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_favorites"
+        android:name="com.example.hugyourmug.ui.favorites.FavoritesFragment"
+        android:label="Favorites"
+        tools:layout="@layout/fragment_favorites" />
+
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.hugyourmug.ui.checkout.CheckoutFragment"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_checkout" />
+
+    <fragment
+        android:id="@+id/orderHistoryFragment"
+        android:name="com.example.hugyourmug.ui.orders.OrderHistoryFragment"
+        tools:layout="@layout/fragment_order_history" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.hugyourmug.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>
