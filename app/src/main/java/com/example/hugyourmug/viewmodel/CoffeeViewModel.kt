@@ -1,32 +1,41 @@
 package com.example.hugyourmug.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.*
-import com.example.hugyourmug.data.AppDatabase
-import com.example.hugyourmug.data.Coffee
-import com.example.hugyourmug.data.CoffeeRepository
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.hugyourmug.data.model.Coffee
+import com.example.hugyourmug.data.repository.CoffeeRepository
 import kotlinx.coroutines.launch
 
-class CoffeeViewModel(application: Application) : AndroidViewModel(application) {
+class CoffeeViewModel : ViewModel() {
 
-    private val repository: CoffeeRepository
-    val allCoffees: LiveData<List<Coffee>>
+    private val repository = CoffeeRepository()
+
+    private val _allCoffees = MutableLiveData<List<Coffee>>()
+    val allCoffees: LiveData<List<Coffee>> = _allCoffees
 
     init {
-        val coffeeDao = AppDatabase.getDatabase(application).coffeeDao()
-        repository = CoffeeRepository(coffeeDao)
-        allCoffees = repository.allCoffees
+        loadCoffees()
     }
 
-    fun addCoffee(coffee: Coffee) = viewModelScope.launch {
-        repository.insert(coffee)
+    private fun loadCoffees() {
+        viewModelScope.launch {
+            _allCoffees.value = repository.getAllCoffees()
+        }
     }
 
-    fun deleteCoffee(coffee: Coffee) = viewModelScope.launch {
-        repository.delete(coffee)
+    fun addCoffee(coffee: Coffee) {
+        viewModelScope.launch {
+            repository.addCoffee(coffee)
+            loadCoffees()
+        }
     }
 
-    fun deleteAll() = viewModelScope.launch {
-        repository.deleteAll()
+    fun deleteCoffee(coffeeId: String) {
+        viewModelScope.launch {
+            repository.deleteCoffee(coffeeId)
+            loadCoffees()
+        }
     }
 }

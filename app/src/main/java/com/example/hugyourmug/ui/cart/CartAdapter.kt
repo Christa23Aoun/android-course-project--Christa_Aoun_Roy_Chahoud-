@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hugyourmug.R
-import com.example.hugyourmug.data.CartItem
+import com.example.hugyourmug.data.model.CartItem
 
 class CartAdapter(
     private val onIncrease: (CartItem) -> Unit,
@@ -18,13 +18,9 @@ class CartAdapter(
     private var items: List<CartItem> = emptyList()
 
     inner class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        val imgCoffee: ImageView = itemView.findViewById(R.id.imgCartCoffee)
         val txtName: TextView = itemView.findViewById(R.id.txtCartItemName)
         val txtPrice: TextView = itemView.findViewById(R.id.txtCartItemPrice)
         val txtQuantity: TextView = itemView.findViewById(R.id.txtCartQuantity)
-
-        // ✅ FIXED: Must be ImageView (not Button)
         val btnIncrease: ImageView = itemView.findViewById(R.id.btnIncrease)
         val btnDecrease: ImageView = itemView.findViewById(R.id.btnDecrease)
         val btnDelete: ImageView = itemView.findViewById(R.id.btnDelete)
@@ -39,7 +35,6 @@ class CartAdapter(
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         val item = items[position]
 
-        holder.imgCoffee.setImageResource(item.imageResId)
         holder.txtName.text = item.name
         holder.txtPrice.text = "$${item.price}"
         holder.txtQuantity.text = item.quantity.toString()

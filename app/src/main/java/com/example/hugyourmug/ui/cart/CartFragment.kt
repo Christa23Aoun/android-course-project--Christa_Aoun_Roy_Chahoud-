@@ -1,25 +1,19 @@
 package com.example.hugyourmug.ui.cart
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hugyourmug.R
-import com.example.hugyourmug.data.AppDatabase
-import com.example.hugyourmug.data.CartItem
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.Dispatchers
-import androidx.navigation.fragment.findNavController
-
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import android.widget.Button
-import android.widget.TextView
+import com.example.hugyourmug.data.model.CartItem
+import com.example.hugyourmug.viewmodel.CartViewModel
 
 class CartFragment : Fragment() {
 
@@ -28,6 +22,7 @@ class CartFragment : Fragment() {
     private lateinit var btnCheckout: Button
 
     private lateinit var adapter: CartAdapter
+    private val viewModel: CartViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,56 +53,24 @@ class CartFragment : Fragment() {
             findNavController().navigate(R.id.action_cartFragment_to_checkoutFragment)
         }
 
-
-        loadCart()
-    }
-
-    private fun getLoggedInUserId(): Int {
-        val prefs = requireContext().getSharedPreferences("userData", Context.MODE_PRIVATE)
-        return prefs.getInt("loggedInUserId", -1)
-    }
-
-    private fun loadCart() {
-        val userId = getLoggedInUserId()
-        if (userId == -1) return
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            val db = AppDatabase.getDatabase(requireContext())
-            val cartDao = db.cartDao()
-
-            val items = withContext(Dispatchers.IO) {
-                cartDao.getCartItemsForUser(userId)
-            }
-
+        viewModel.cartItems.observe(viewLifecycleOwner) { items ->
             adapter.updateList(items)
             calculateTotal(items)
         }
+
+        viewModel.loadCart()
     }
 
     private fun updateQuantity(item: CartItem, newQuantity: Int) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            val db = AppDatabase.getDatabase(requireContext())
-            val cartDao = db.cartDao()
-
-            withContext(Dispatchers.IO) {
-                cartDao.updateQuantity(item.id, newQuantity)
-            }
-
-            loadCart()
-        }
+        val itemId = item.id
+        if (itemId.isBlank()) return
+        viewModel.updateQuantity(itemId, newQuantity)
     }
 
     private fun deleteItem(item: CartItem) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            val db = AppDatabase.getDatabase(requireContext())
-            val cartDao = db.cartDao()
-
-            withContext(Dispatchers.IO) {
-                cartDao.deleteItemById(item.id)
-            }
-
-            loadCart()
-        }
+        val itemId = item.id
+        if (itemId.isBlank()) return
+        viewModel.removeItem(itemId)
     }
 
     private fun calculateTotal(items: List<CartItem>) {

@@ -7,14 +7,14 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.hugyourmug.ui.maps.MapsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val prefs = getSharedPreferences("userData", MODE_PRIVATE)
-        if (prefs.getInt("loggedInUserId", -1) == -1) {
+        if (FirebaseAuth.getInstance().currentUser == null) {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
             return
@@ -29,12 +29,10 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
-
                 R.id.nav_maps -> {
                     startActivity(Intent(this, MapsActivity::class.java))
                     false
                 }
-
                 else -> {
                     navController.navigate(item.itemId)
                     true

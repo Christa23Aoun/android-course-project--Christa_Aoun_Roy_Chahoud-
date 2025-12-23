@@ -8,16 +8,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hugyourmug.R
-import com.example.hugyourmug.data.FavoriteItem
+import com.example.hugyourmug.data.model.FavoriteItem
 
 class FavoritesAdapter(
-    private val items: MutableList<FavoriteItem>,
     private val onRemove: (FavoriteItem) -> Unit,
     private val onAddToCart: (FavoriteItem) -> Unit
 ) : RecyclerView.Adapter<FavoritesAdapter.FavViewHolder>() {
 
+    private var items: List<FavoriteItem> = emptyList()
+
     inner class FavViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val img: ImageView = itemView.findViewById(R.id.imgFavCoffee)
         val txtName: TextView = itemView.findViewById(R.id.txtFavName)
         val txtPrice: TextView = itemView.findViewById(R.id.txtFavPrice)
         val btnRemove: ImageView = itemView.findViewById(R.id.btnRemoveFav)
@@ -33,7 +33,6 @@ class FavoritesAdapter(
     override fun onBindViewHolder(holder: FavViewHolder, position: Int) {
         val item = items[position]
 
-        holder.img.setImageResource(item.imageResId)
         holder.txtName.text = item.name
         holder.txtPrice.text = "$${item.price}"
 
@@ -42,4 +41,9 @@ class FavoritesAdapter(
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun updateList(newItems: List<FavoriteItem>) {
+        items = newItems
+        notifyDataSetChanged()
+    }
 }

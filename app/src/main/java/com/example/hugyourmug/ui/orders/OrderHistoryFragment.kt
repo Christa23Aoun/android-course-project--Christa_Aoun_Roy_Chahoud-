@@ -5,16 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.hugyourmug.data.AppDatabase
 import com.example.hugyourmug.databinding.FragmentOrderHistoryBinding
-import kotlinx.coroutines.launch
+import com.example.hugyourmug.viewmodel.OrdersViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class OrderHistoryFragment : Fragment() {
 
     private var _binding: FragmentOrderHistoryBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: OrdersViewModel by viewModels()
+
+    private val userId: String
+        get() = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,18 +35,26 @@ class OrderHistoryFragment : Fragment() {
         binding.recyclerOrderHistory.layoutManager =
             LinearLayoutManager(requireContext())
 
-        loadOrders()
+        val adapter = OrderHistoryAdapter { order ->
+            val action =
+                OrderHistoryFragmentDirections
+                    .actionOrderHistoryFragmentToOrderDetailsFragment(order.id)
+            findNavController().navigate(action)
+        }
+
+        binding.recyclerOrderHistory.adapter = adapter
+
+        viewModel.orders.observe(viewLifecycleOwner) { orders ->
+            adapter.updateList(orders)
+        }
+
+        if (userId.isNotEmpty()) {
+            viewModel.loadOrders(userId)
+        }
     }
 
-    private fun loadOrders() {
-        lifecycleScope.launch {
-            val db = AppDatabase.getDatabase(requireContext())
-            val orders = db.orderDao().getOrdersForUser(1)
-
-            binding.recyclerOrderHistory.adapter =
-                OrderHistoryAdapter(orders) { selectedOrder ->
-                    // Will open order details screen
-                }
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
