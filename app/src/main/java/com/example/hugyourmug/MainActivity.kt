@@ -28,15 +28,11 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setupWithNavController(navController)
 
         bottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_maps -> {
-                    startActivity(Intent(this, MapsActivity::class.java))
-                    false
-                }
-                else -> {
-                    navController.navigate(item.itemId)
-                    true
-                }
+            if (item.itemId == R.id.nav_maps) {
+                startActivity(Intent(this, MapsActivity::class.java))
+                false
+            } else {
+                true
             }
         }
     }
