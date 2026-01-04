@@ -5,18 +5,18 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import com.example.hugyourmug.data.AppDatabase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        auth = FirebaseAuth.getInstance()
 
         val edtEmail = findViewById<EditText>(R.id.edtEmailLogin)
         val edtPassword = findViewById<EditText>(R.id.edtPasswordLogin)
@@ -43,49 +43,22 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            lifecycleScope.launch {
-                val db = AppDatabase.getDatabase(applicationContext)
-                val userDao = db.userDao()
-
-                val user = withContext(Dispatchers.IO) {
-                    userDao.getUserByEmail(email)
-                }
-
-                if (user == null) {
-                    Snackbar.make(
-                        findViewById(android.R.id.content),
-                        "No account found for this email",
-                        Snackbar.LENGTH_LONG
-                    )
-                        .setBackgroundTint(getColor(R.color.coffee_brown))
-                        .setTextColor(getColor(android.R.color.white))
-                        .show()
-                    return@launch
-                }
-
-                val enteredHash = hashPassword(password)
-
-                if (enteredHash == user.passwordHash) {
-                    // ✅ Save logged in user ID for cart & favorites
-                    val sharedPref = getSharedPreferences("userData", MODE_PRIVATE)
-                    sharedPref.edit()
-                        .putInt("loggedInUserId", user.id)
-                        .apply()
-
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnSuccessListener {
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()
-                } else {
+                }
+                .addOnFailureListener {
                     Snackbar.make(
                         findViewById(android.R.id.content),
-                        "Incorrect password",
+                        it.message ?: "Login failed",
                         Snackbar.LENGTH_LONG
                     )
                         .setBackgroundTint(getColor(R.color.coffee_brown))
                         .setTextColor(getColor(android.R.color.white))
                         .show()
                 }
-            }
         }
     }
 }

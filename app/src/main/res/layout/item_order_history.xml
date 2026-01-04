@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#1A1A1A"
+    android:padding="14dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <TextView
+        android:id="@+id/txtOrderDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dec 05, 2025 • 10:32 AM"
+        android:textColor="#F5D0A9"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtOrderType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delivery • Bring change: Yes"
+        android:textColor="#CCCCCC"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/txtOrderItems"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 items"
+        android:textColor="#CCCCCC"
+        android:layout_marginTop="2dp" />
+
+    <TextView
+        android:id="@+id/txtOrderTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$14.99"
+        android:textColor="#F5D0A9"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

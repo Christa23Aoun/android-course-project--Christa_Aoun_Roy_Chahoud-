@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "845877258114",
+    "project_id": "hugyourmug",
+    "storage_bucket": "hugyourmug.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845877258114:android:be537c288aa2819064d19b",
+        "android_client_info": {
+          "package_name": "com.example.hugyourmug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdkC4eZdSpjaxbcG51hEBmr8rcGurx_vA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

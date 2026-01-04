@@ -1,28 +1,25 @@
 package com.example.hugyourmug.ui.menu
 
-import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hugyourmug.R
+import com.example.hugyourmug.data.model.Coffee
 
 class CoffeeMenuAdapter(
-    private val items: List<CoffeeMenuItem>,
-    private val onAddToCartClick: (CoffeeMenuItem) -> Unit,
-    private val onAddToFavoriteClick: (CoffeeMenuItem) -> Unit
+    private var items: List<Coffee>,
+    private val onAddClick: (Coffee) -> Unit,
+    private val onDeleteClick: (Coffee) -> Unit
 ) : RecyclerView.Adapter<CoffeeMenuAdapter.CoffeeViewHolder>() {
 
     inner class CoffeeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imgCoffee: ImageView = itemView.findViewById(R.id.imgCoffee)
         val txtName: TextView = itemView.findViewById(R.id.txtCoffeeName)
         val txtPrice: TextView = itemView.findViewById(R.id.txtCoffeePrice)
-        val txtOldPrice: TextView = itemView.findViewById(R.id.txtCoffeeOldPrice)
-        val btnAddToCart: Button = itemView.findViewById(R.id.btnAddToCart)
-        val btnAddToFavorite: Button = itemView.findViewById(R.id.btnAddToFavorite)
+        val btnAdd: Button = itemView.findViewById(R.id.btnAddToCart)
+        val btnDelete: Button = itemView.findViewById(R.id.btnAddToFavorite)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoffeeViewHolder {
@@ -32,24 +29,24 @@ class CoffeeMenuAdapter(
     }
 
     override fun onBindViewHolder(holder: CoffeeViewHolder, position: Int) {
-        val item = items[position]
+        val coffee = items[position]
 
-        holder.imgCoffee.setImageResource(item.imageResId)
-        holder.txtName.text = item.name
-        holder.txtPrice.text = "${item.price}$"
-        holder.txtOldPrice.text = "${item.oldPrice}$"
+        holder.txtName.text = coffee.name
+        holder.txtPrice.text = "${coffee.price}$"
 
-        holder.txtOldPrice.paintFlags =
-            holder.txtOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-
-        holder.btnAddToCart.setOnClickListener {
-            onAddToCartClick(item)
+        holder.btnAdd.setOnClickListener {
+            onAddClick(coffee)
         }
 
-        holder.btnAddToFavorite.setOnClickListener {
-            onAddToFavoriteClick(item)
+        holder.btnDelete.setOnClickListener {
+            onDeleteClick(coffee)
         }
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun updateData(newItems: List<Coffee>) {
+        items = newItems
+        notifyDataSetChanged()
+    }
 }

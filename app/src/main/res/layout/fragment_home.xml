@@ -62,6 +62,17 @@
             android:lineSpacingExtra="6dp"
             android:paddingBottom="30dp" />
 
+        <Button
+            android:id="@+id/btnMyProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Profile"
+            android:backgroundTint="#7A4B2E"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:padding="12dp" />
+
     </LinearLayout>
 
 </ScrollView>

@@ -7,6 +7,7 @@
     <color name="coffee_cream">#FFF4E6</color>
     <color name="coffee_milk">#F9E4C8</color>
     <color name="coffee_dark">#4B2E19</color>
+    <color name="beige">#F5F5DC</color> <!-- Beige color -->
 
     <!-- General UI -->
     <color name="white">#FFFFFF</color>
@@ -15,5 +16,6 @@
     <!-- Bottom navigation tint -->
     <color name="bottom_nav_selected">#6F4E37</color>
     <color name="bottom_nav_unselected">#9E9E9E</color>
+    <color name="red">#D32F2F</color>
 
 </resources>
