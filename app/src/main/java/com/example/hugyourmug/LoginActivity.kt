@@ -10,13 +10,9 @@ import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        auth = FirebaseAuth.getInstance()
 
         val edtEmail = findViewById<EditText>(R.id.edtEmailLogin)
         val edtPassword = findViewById<EditText>(R.id.edtPasswordLogin)
@@ -28,6 +24,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener {
+
+            btnLogin.isEnabled = false
+
             val email = edtEmail.text.toString().trim()
             val password = edtPassword.text.toString().trim()
 
@@ -40,13 +39,14 @@ class LoginActivity : AppCompatActivity() {
                     .setBackgroundTint(getColor(R.color.coffee_brown))
                     .setTextColor(getColor(android.R.color.white))
                     .show()
+                btnLogin.isEnabled = true
                 return@setOnClickListener
             }
 
-            auth.signInWithEmailAndPassword(email, password)
+            FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }
                 .addOnFailureListener {
@@ -58,6 +58,7 @@ class LoginActivity : AppCompatActivity() {
                         .setBackgroundTint(getColor(R.color.coffee_brown))
                         .setTextColor(getColor(android.R.color.white))
                         .show()
+                    btnLogin.isEnabled = true
                 }
         }
     }
